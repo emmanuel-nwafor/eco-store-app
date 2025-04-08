@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 // Correct import statement for items
 import items from "./items"; // Ensure the file path is correct
+import { Link } from "expo-router";
 
 export default function Index() {
   return (
@@ -12,7 +13,9 @@ export default function Index() {
       <View style={{ borderBottomLeftRadius: 35, borderBottomRightRadius: 35, backgroundColor: "#000" }}>
         <View style={styles.header}>
           <Text style={styles.headerText}>Hi, Welcome</Text>
-          <Ionicons name="person-circle" size={30} color="#080808" />
+          <Link href={"/profile"}>
+            <Ionicons name="person-circle" size={36} color="#fff" />
+          </Link>
         </View>
 
         <View style={styles.search}>
@@ -50,6 +53,10 @@ export default function Index() {
             </View>
           ))}
         </View>
+
+        <Pressable onPress={() => {}} style={{ marginVertical: 20, backgroundColor: "#000", padding: 10, borderRadius: 12 }}>
+          <Text style={{ color: "white", fontSize: 15 }}>See all</Text>
+        </Pressable>
 
       </ScrollView>
     </SafeAreaView>

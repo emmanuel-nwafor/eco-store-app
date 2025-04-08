@@ -4,6 +4,6 @@ export default function Login() {
   return(
     <Text style={{
       fontSize: 50,
-    }}>Login</Text>
+    }}>Profile</Text>
   )
 }

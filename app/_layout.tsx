@@ -16,6 +16,16 @@ export default function RootLayout() {
             headerShown: false,
           }}
         />
+        <Stack.Screen
+          name="profile"
+          options={{
+            headerShown: true,
+            headerTintColor: "#fff",
+            headerStyle: {
+              backgroundColor: "#000",
+            },
+          }}
+        />
       </Stack>
     </>
   );
