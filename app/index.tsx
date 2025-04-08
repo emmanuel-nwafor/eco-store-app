@@ -1,192 +1,147 @@
-import { Link } from "expo-router";
-import React, { useState } from "react";
-import { 
-  Text, 
-  View, 
-  SafeAreaView, 
-  TextInput, 
-  Pressable, 
-  TouchableOpacity, 
-  Alert 
-} from "react-native";
+import { Image, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Ionicons } from '@expo/vector-icons';
+
+// Correct import statement for items
+import items from "./items"; // Ensure the file path is correct
 
 export default function Index() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [agreed, setAgreed] = useState(false);
-
-  const [isFocusedEmail, setIsFocusedEmail] = useState(false);
-  const [isFocusedPassword, setIsFocusedPassword] = useState(false);
-  const [isFocusedConfirmPassword, setIsFocusedConfirmPassword] = useState(false);
-
-  const handleSignUp = () => {
-    if (!email || !password || !confirmPassword || !agreed) {
-      Alert.alert("Something went wrong", "All fields are required");
-      return;
-    }
-    if (password !== confirmPassword) {
-      Alert.alert("Error", "Passwords do not match");
-      return;
-    }
-    console.log("Signing up with", email, password);
-  };
-
   return (
-    <SafeAreaView style={{ height: "100%" }}>
-      <View style={{ 
-        backgroundColor: "white", 
-        height: "100%", 
-        justifyContent: "center", 
-        padding: 10,
-      }}>
-        <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-          <Text style={{
-            color: "white",
-            fontSize: 50,
-            fontWeight: "bold",
-            marginBottom: 10,
-            margin: 20,
-          }}>
-            Sign up 
-          </Text>
-          <Text style={{ color: "white", marginBottom: 10, margin: 20, }}>AXIOS</Text>
-        </View>
-        
-        {/* Email Input */}
-        <View style={{ margin: 20 }}>
-          <Text style={{ 
-            color: "white", 
-            position: "absolute", 
-            zIndex: 1,
-            top: isFocusedEmail || email ? -10 : 15, 
-            left: 10, 
-            backgroundColor: "black", 
-            paddingHorizontal: 5,
-            fontSize: isFocusedEmail || email ? 14 : 16 
-          }}>
-            Email
-          </Text>
-          <TextInput
-            placeholder=""
-            placeholderTextColor="#888"
-            onFocus={() => setIsFocusedEmail(true)}
-            onBlur={() => setIsFocusedEmail(email.length > 0)}
-            value={email}
-            onChangeText={setEmail}
-            style={{
-              borderWidth: 1,
-              borderColor: "white",
-              padding: 15,
-              borderRadius: 10,
-              color: "white",
-            }}
-          />
-        </View>
-        
-        {/* Password Input */}
-        <View style={{ margin: 20 }}>
-          <Text style={{ 
-            color: "white", 
-            position: "absolute", 
-            zIndex: 1,
-            top: isFocusedPassword || password ? -10 : 15, 
-            left: 10, 
-            backgroundColor: "black", 
-            paddingHorizontal: 5,
-            fontSize: isFocusedPassword || password ? 14 : 16 
-          }}>
-            Password
-          </Text>
-          <TextInput
-            placeholder=""
-            placeholderTextColor="#888"
-            secureTextEntry
-            onFocus={() => setIsFocusedPassword(true)}
-            onBlur={() => setIsFocusedPassword(password.length > 0)}
-            value={password}
-            onChangeText={setPassword}
-            style={{
-              borderWidth: 1,
-              borderColor: "white",
-              padding: 15,
-              borderRadius: 10,
-              color: "white",
-            }}
-          />
+    <SafeAreaView style={{ flex: 1 }}>
+      {/* Header and Search section */}
+      <View style={{ borderBottomLeftRadius: 35, borderBottomRightRadius: 35, backgroundColor: "#000" }}>
+        <View style={styles.header}>
+          <Text style={styles.headerText}>Hi, Welcome</Text>
+          <Ionicons name="person-circle" size={30} color="#080808" />
         </View>
 
-        {/* Confirm Password Input */}
-        <View style={{ margin: 20 }}>
-          <Text style={{ 
-            color: "white", 
-            position: "absolute", 
-            zIndex: 1,
-            top: isFocusedConfirmPassword || confirmPassword ? -10 : 15, 
-            left: 10, 
-            backgroundColor: "black", 
-            paddingHorizontal: 5,
-            fontSize: isFocusedConfirmPassword || confirmPassword ? 14 : 16 
-          }}>
-            Confirm Password
-          </Text>
+        <View style={styles.search}>
           <TextInput
-            placeholder=""
-            placeholderTextColor="#888"
-            secureTextEntry
-            onFocus={() => setIsFocusedConfirmPassword(true)}
-            onBlur={() => setIsFocusedConfirmPassword(confirmPassword.length > 0)}
-            value={confirmPassword}
-            onChangeText={setConfirmPassword}
-            style={{
-              borderWidth: 1,
-              borderColor: "white",
-              padding: 15,
-              borderRadius: 10,
-              color: "white",
-            }}
+            placeholder="Search"
+            style={styles.searchInput}
           />
+          <TouchableOpacity style={styles.searchButton}>
+            <Ionicons name="search" size={20} color="#000" />
+          </TouchableOpacity>
         </View>
-        
-        {/* Terms & Conditions Checkbox */}
-        <View style={{ flexDirection: "row", alignItems: "center", marginLeft: 20 }}>
-          <Pressable 
-            style={{
-              width: 20,
-              height: 20,
-              borderWidth: 1,
-              borderColor: "white",
-              borderRadius: 5,
-              justifyContent: "center",
-              alignItems: "center",
-              backgroundColor: agreed ? "white" : "transparent"
-            }} 
-            onPress={() => setAgreed(!agreed)}
-          />
-          <Text style={{ color: "#888", marginLeft: 10 }}>Agree to terms and conditions</Text>
-        </View>
-
-        {/* Sign Up Button */}
-        <TouchableOpacity 
-          style={{
-            backgroundColor: "white",
-            padding: 20,
-            borderRadius: 15,
-            margin: 20,
-            alignItems: "center",
-          }} 
-          onPress={handleSignUp}
-        >
-          <Text>Sign up</Text>
-        </TouchableOpacity>
-
-        {/* Login Link */}
-        <Link href={"/login"} style={{ color: "#888", margin: 23, fontSize: 15 }}>
-          <Text>
-            Already have an account? Login
-          </Text>
-        </Link>
       </View>
+
+      {/* ScrollView for content */}
+      <ScrollView contentContainerStyle={styles.itemsContainer}>
+        
+        {/* New Collection section in row layout */}
+        <View style={styles.board}>
+          <Text style={styles.boardText}>New Collection</Text>
+          <Pressable>
+            <Text style={{ color: "black", fontSize: 15 }}>See all</Text>
+          </Pressable>
+        </View>
+
+        {/* Grid of items */}
+        <View style={styles.gridContainer}>
+          {items.map((item) => (
+            <View key={item.id} style={styles.itemContainer}>
+              <Image source={{ uri: item.image }} style={styles.itemImage} />
+              <View style={styles.itemInfo}>
+                <Text style={styles.itemName}>{item.name}</Text>
+                <Text style={styles.itemPrice}>${item.price}</Text>
+                <Ionicons name="heart-outline" size={24} color="#000" style={{ position: "absolute", top: 15, right: 10 }} />
+              </View>
+            </View>
+          ))}
+        </View>
+
+      </ScrollView>
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    margin: 30,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+  },
+  headerText: {
+    fontSize: 25,
+    fontWeight: "bold",
+    color: "#fff",
+  },
+  search: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginHorizontal: 25,
+    marginVertical: 10,
+  },
+  searchInput: {
+    borderWidth: 1,
+    // borderColor: "#2f2f2f",
+    backgroundColor: "#f2f2f2",
+    color: "#000",
+    fontSize: 15,
+    borderRadius: 20,
+    padding: 15,
+    height: 50,
+    width: "84%", // Adjusted for responsiveness
+  },
+  searchButton: {
+    backgroundColor: "#fff",
+    borderRadius: 20,
+    padding: 15,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  // New Collection section
+  board: {
+    flexDirection: "row",
+    marginTop: 25,
+    margin: 10,
+    justifyContent: "space-between",
+  },
+  boardText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#000",
+  },
+  // Grid container for items
+  itemsContainer: {
+    flexGrow: 1, // To prevent content from not filling the screen
+    paddingHorizontal: 15,
+  },
+  gridContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+  },
+  itemContainer: {
+    width: "47%", // Adjusted for responsiveness (2 items per row)
+    marginVertical: 10,
+    backgroundColor: "#f1f5fe",
+    borderRadius: 12,
+    padding: 10,
+  },
+  itemImage: {
+    width: "100%",
+    height: 200,
+    borderRadius: 10,
+    marginBottom: 10,
+    resizeMode: "cover",
+  },
+  itemInfo: {
+    paddingHorizontal: 5,
+  },
+  itemName: {
+    fontSize: 18,
+    fontWeight: "light",
+    marginBottom: 5,
+  },
+  itemPrice: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#000",
+  },
+});
