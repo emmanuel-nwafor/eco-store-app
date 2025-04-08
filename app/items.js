@@ -51,20 +51,20 @@ const items = [
   },
   {
     id: 9,
-    image: "https://i.pinimg.com/236x/e9/02/fa/e902faade3190fe5db8c2303cd51d4b2.jpg",
-    name: "Black Shoe",
+    image: "https://i.pinimg.com/236x/77/4b/ad/774bada9254be00269440820019252cb.jpg",
+    name: "Vintage YK2",
     price: 120,
   },
   {
     id: 10,
-    image: "https://i.pinimg.com/236x/3a/9e/c7/3a9ec7c95bc4748e261e2ad05c9d4f76.jpg",
-    name: "Black Polo",
+    image: "https://i.pinimg.com/236x/da/21/ab/da21abbe6e60862341c88cfe96cf48ae.jpg",
+    name: "Black Shades",
     price: 96,
   },
   {
     id: 11,
-    image: "https://i.pinimg.com/236x/08/24/13/082413fb74e6e334623c998e302d08a1.jpg",
-    name: "Brown Polo",
+    image: "https://i.pinimg.com/236x/45/bc/8b/45bc8bf45d29b7c2494922e262b668c6.jpg",
+    name: "Black Joggers",
     price: 190,
   },
   {
